@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 /****** UTILITY TYPES */
 
 //** Partial */
@@ -178,3 +180,5 @@ type FetchUsersReturnType1 = ReturnType<typeof fetchUsers>;
 type FetchUsersReturnType2 = Awaited<ReturnType<typeof fetchUsers>>;
 
 fetchUsers().then((users) => console.log(users));
+
+export default {};

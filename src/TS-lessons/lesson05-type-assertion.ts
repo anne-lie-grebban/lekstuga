@@ -1,6 +1,8 @@
+//@ts-nocheck
+
 //TYPE ASSERTION
 
-// Kan även ibland kallas för type casting. 
+// Kan även ibland kallas för type casting.
 
 // Sometimes you will have information about the type of a value that TypeScript can’t know about.
 
@@ -9,46 +11,49 @@
 
 type One = string;
 type Two = string | number;
-type Three = 'hello';
+type Three = "hello";
 
 //convert to less specific
-let a: One = 'hello'; 
+let a: One = "hello";
 let b = a as Two; //less specific
-let c = a as Three // more specifiv
+let c = a as Three; // more specifiv
 
 //d är av typen One (måste typa i type eller interface) med värdet “world”
-let d = <One> 'world';
+let d = <One>"world";
 //let d = 'world' as One; //Eslint TS correct syntax
-let e = <string | number> 'world';
+let e = <string | number>"world";
 //let e = 'world' as string | number; //Eslint TS correct syntax
 
 // I vissa fall använder man inte angle brackets så mycket pga de kan inte användas i TSX-filer för att sedan användas i React (tror jag han menade?)
 
 // en typ av Type assertion:
 
-const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
-    if (c === 'add') return a + b
-    return '' + a + b;
-}
+const addOrConcat = (
+  a: number,
+  b: number,
+  c: "add" | "concat"
+): number | string => {
+  if (c === "add") return a + b;
+  return "" + a + b;
+};
 
 //Vi berättar att denna returnerar en sträng.
-let myVal: string = addOrConcat(2, 2, 'concat') as string;
+let myVal: string = addOrConcat(2, 2, "concat") as string;
 
 // Vi berättar att denna returnerar ett number. Måste ändras på båda ställen.
 // Typescript kommer inte tycka att detta är ett problem, men det betyder inte att det inte är det.
 // Som i detta fall när en sträng kommer bli returnerad hur som. (iom att vi valt "concat" som metod)
-let nextVal: number = addOrConcat(2 ,2, 'concat') as number;
+let nextVal: number = addOrConcat(2, 2, "concat") as number;
 
 //Detta blir t ex fel, vi kan inte toString() genom ren typning.
-10 as string
+10 as string;
 
 // Om vi VERKLIGEN vill göra 10 till en sträng kan vi setta den som en unknown-typ. unknown är en special type.
 // unknown är lite som typen any, bara det att du inte kan använda den någonstans OM INTE du gör något likt det vi gör nedan
 // Kallas "force casting" eller "double casting". 2 assertions.
 // Man over rules TS.
 // Rekommenderas INTE för nybörjare då den som sagt ovrridear typescript, men kan vara bra att veta.
-(10 as unknown) as string;
-
+10 as unknown as string;
 
 //USEFULL ASSERTIONS
 
@@ -57,11 +62,11 @@ let nextVal: number = addOrConcat(2 ,2, 'concat') as number;
 //Kika på nedan två deklareringar för att se vad TS infers.
 // HTMLImageElement || Element || HTMLElement (eller null)
 // Alla dessa är olika specifika
-const img1 = document.querySelector('img') // as HTMLImageElement; // kommentera in för att lösa felet på rad 68
-const img2 = document.querySelector('#myId')
-const myImg = document.getElementById('#img')//! // as HTMLImageElement // kommentera in för att lösa problemen på rad 75
+const img1 = document.querySelector("img"); // as HTMLImageElement; // kommentera in för att lösa felet på rad 68
+const img2 = document.querySelector("#myId");
+const myImg = document.getElementById("#img"); //! // as HTMLImageElement // kommentera in för att lösa problemen på rad 75
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-const nextImg = <HTMLImageElement>document.getElementById('#img'); //Ytterligare ett sätt att typa, men linten gillar INTE
+const nextImg = <HTMLImageElement>document.getElementById("#img"); //Ytterligare ett sätt att typa, men linten gillar INTE
 
 // Här nedan gnäller TS att img kan vara null, men i detta fall vet vi bättre än TS för vi har skapat siten.
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -103,8 +108,9 @@ myImg.src;
 
 //Denna gång skall vi använda oss mer av type assertion
 //Denna föredras
-const year  = document.getElementById('year') as HTMLSpanElement; // Vi vet att det är ett span-element vi target:at
+const year = document.getElementById("year") as HTMLSpanElement; // Vi vet att det är ett span-element vi target:at
 const thisYear: string = new Date().getFullYear().toString();
-year?.setAttribute('datetime', thisYear);
+year?.setAttribute("datetime", thisYear);
 year.textContent = thisYear;
 
+export default {};
