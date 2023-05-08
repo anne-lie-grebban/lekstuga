@@ -21,6 +21,8 @@ code {
   flex-direction: column;
 }
 
+/* TUTORIAL CSS */
+
 .main-tutorial {
   height: 100vh;
   width: 100vw;
@@ -29,7 +31,30 @@ code {
   background-color: lightgrey;
 }
 
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
 .tutorial-content-container {
   width: 500px;
+  max-width: 100vw;
   margin: 0px auto;
+}
+.tutorial-counter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.tutorial-counter button {
+  padding: 4px 12px;
+  margin: 8px;
+  font-weight: 700px;
+  font-size: 24px;
 }
